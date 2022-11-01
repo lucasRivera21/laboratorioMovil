@@ -1,0 +1,23 @@
+{% extends './layout.html' %}
+{% block title %}Registro exitoso{% endblock %}
+{% block nav %}
+<nav class="nav">
+    <a href="/" class="logo"><img src="/static/img/Logo.png" alt="Logo LGJR" class="imagen-logo"></a>
+
+    <ul class="acceso">
+        <li class="opcion" id="ocultar-responsive"><a href="/" class="link">Inicio</a></li>
+        <li class="opcion"><a href="/registro" class="link" id="registro-responsive">Registrarse</a></li>
+        <li class="opcion" id="boton-nav"><a href="/iniciar-sesion" class="link" id="link-boton">Iniciar Sesión</a></li>
+    </ul>
+</nav>
+{% endblock %}
+
+{% block body %}
+    <h1 class="title">Te haz registrado correctamente</h1>
+    <div class="div-flecha">
+        <i class="fa-solid fa-arrow-down-long" id="flecha"></i>
+    </div>
+    <div class="div-saber-mas">
+        <a href="/registro" class="link-saber-mas">Iniciar sesión</a>    
+    </div>
+{% endblock %}

@@ -1,0 +1,42 @@
+.title{
+    color: white;
+    font-family: 'Audiowide', cursive;
+    font-size: 50px;
+    text-align: center;
+    margin-top: 25vh;
+}
+.div-flecha{
+    text-align: center;
+    margin: 30px auto 30px auto;
+}
+#flecha{
+    color: white;
+    font-size: 80px;
+}
+.div-saber-mas{
+    margin-bottom: 25vh;
+    display: flex;
+    justify-content: center;
+
+}
+.link-saber-mas{
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    border: 2px solid white;
+    font-size: 20px;
+}
+.link-saber-mas:hover{
+    animation-name: aumentar;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+@keyframes aumentar {
+    from {
+        transform:scale(1);
+    }
+    to{
+        transform:scale(1.3);
+    }
+}
+
