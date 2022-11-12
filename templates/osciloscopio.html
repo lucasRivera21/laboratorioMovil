@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/osciloscopio.css">
+    <script src="https://kit.fontawesome.com/48351f586e.js" crossorigin="anonymous"></script>
+    <title>osciloscopio</title>
+</head>
+<body>
+
+<nav class="nav">
+    <a href="/" class="logo"><img src="/static/img/Logo.png" alt="Logo LGJR" class="imagen-logo"></a>
+    
+    <ul class="acceso">
+        <li class="opcion"><a href="/" class="link" id="registro-responsive">Inicio</a></li>
+        <li class="opcion" id="boton-nav"><a href="/iniciar-sesion" class="link" id="link-boton">Cerrar sesión</a></li>
+    </ul>
+</nav>
+    
+    
+<div class="body">
+    <!--BOTON VOLVER-->
+    <section class="boton-volver">
+        <a href="/usuario" class="link-volver">
+            <i class="fa-solid fa-arrow-left flecha"></i>
+            <p class="volver">Volver</p>
+        </a>
+    </section>
+    
+    <!--CONTENIDO-->
+    <section class="contenido">
+    
+        <!--GRÁFICA 1-->
+        <div class="contenedor-graficas">
+        <div class="contenedor-grafica">
+            <div class="arriba-grafica">
+                <h2 class="titulo-grafica">Puerto 1</h2>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <div class="grafica"><img src="https://prints.ultracoloringpages.com/fcd8077916a3d7a117451e1e90357b4f.png" alt="" class="imagen-grafica"></div>
+        </div>
+    
+        <!--GRÁFICA 2-->
+        <div class="contenedor-grafica">
+            <div class="arriba-grafica">
+                <h2 class="titulo-grafica">Puerto 2</h2>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <div class="grafica"><img src="https://prints.ultracoloringpages.com/fcd8077916a3d7a117451e1e90357b4f.png" alt="" class="imagen-grafica"></div>
+        </div>
+        </div>
+
+        <!--INFORMACIÓN GRÁFICAS-->
+        <div class="info-graficas">
+            <h1 class="titulo">Osciloscopio</h1>
+    
+            <!--INFO PUERTO 1-->
+            <div class="puerto1">
+                <div class="texto-grafica"><b class="subtitle">Puerto 1</b></div>
+                <div class="texto-grafica"><b class="subtitle">Frecuencia:</b><p> 60Hz</p></div>
+                <div class="texto-grafica"><b class="subtitle">Voltaje Pico:</b><p> {{variable}}</p></div>
+                <div class="texto-grafica"><b class="subtitle">Voltaje Pico-Pico:</b><p> {{variable}}</p></div>
+                <div class="texto-grafica"><b class="subtitle">Voltaje RMS:</b><p> {{variable}}</p></div>
+            </div>
+    
+            <!--INFO PUERTO 2-->
+            <div class="puerto2">
+                <div class="texto-grafica"><b class="subtitle">Puerto 2</b></div>
+                <div class="texto-grafica"><b class="subtitle">Frecuencia:</b><p> 60Hz</p></div>
+                <div class="texto-grafica"><b class="subtitle">Voltaje Pico:</b><p> {{variable}}</p></div>
+                <div class="texto-grafica"><b class="subtitle">Voltaje Pico-Pico:</b><p> {{variable}}</p></div>
+                <div class="texto-grafica"><b class="subtitle">Voltaje RMS:</b><p> {{variable}}</p></div>
+            </div>
+    
+            <!--CONTENDOR OTROS ELEMENTOS-->
+            <div class="contenedor-elementos">
+                <h3 class="titulo-otros-elementos">Otros elementos</h3>
+                
+                <div class="elemento">
+                    <a href="/multimetro" class="link-elemento"><p class="texto-link-elemento">Multímetro</p></a>
+                </div>
+    
+                <div class="elemento">
+                    <a href="/generador" class="link-elemento"><p class="texto-link-elemento">G. Señales</p></a>
+                </div>
+    
+                <div class="elemento">
+                    <a href="/fuente" class="link-elemento"><p class="texto-link-elemento">F.voltaje</p></a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>
+
+

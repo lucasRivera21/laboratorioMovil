@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="shortcut icon" href="/static/img/Logolaboratorio1.png" type="image/x-icon" >
+    <link rel="stylesheet" href="/static/css/Inicio2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+    <header class="cabecera">
+
+        <div class="cab_nav">
+            <img src="/static/img/Logolaboratorio1.png" alt="Logo" class="logo_img">
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/registro">Registrarse</a></li>
+                <li class="marca"><a href="/iniciar-sesion">Iniciar sesión</a></li>
+            </ul>
+        </div>
+        
+    </header>
+    
+
+    <form action="/registro-exitoso" method="post" class="formulario_ing">
+        <h2 class="info_h2">Iniciar sesión</h2>
+        <input type="text" class="formula" required placeholder="&#128113; Nombre"  name="Nombre">
+        <input type="text" class="formula" required placeholder="&#129492; Apellidos"  name="Apellidos">
+        <input type="text" class="formula" required placeholder="&#127889; Identificación"  name="Identificación">
+        <input type="text" class="formula" required placeholder="&#128242; Número de celular"  name="celular">
+        <input type="email" class="formula" required placeholder="&#128231; Correo"  name="Correo">
+        <input type="password" class="formula" required placeholder="&#128272; Contraseña" name="password" >
+        <input type="submit" value="Iniciar Sesión" class="enviar">
+        <p class="frase">¿Ya tienes una cuenta? <a class="link" href="/iniciar-sesion">Iniciar sesión</a></p>
+    </form>
+    <footer class="foot">
+        <p class="foot_p">pag web Laboratorio &copy</p>
+    </footer>

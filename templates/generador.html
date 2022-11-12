@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de señales</title>
+</head>
+<body>
+    
+<nav class="nav">
+    <a href="/" class="logo"><img src="/static/img/Logo.png" alt="Logo LGJR" class="imagen-logo"></a>
+    
+    <ul class="acceso">
+        <li class="opcion"><a href="/" class="link" id="registro-responsive">Inicio</a></li>
+        <li class="opcion" id="boton-nav"><a href="/iniciar-sesion" class="link" id="link-boton">Cerrar sesión</a></li>
+    </ul>
+</nav>
+
+<form action="/generador" class="form-generador" method="post">
+    <label for="frecuencia">Frecuencia (0Hz-70Hz):</label>
+    <input type="text" class="entrada-generador" name="frecuencia" required>
+
+    <label for="duty">Ciclo de trabajo (0%-100%):</label>
+    <input type="text" class="entrada-generador" name="duty" required>
+
+    <input type="submit" class="submit" value="Conectar">
+</form>
+</body>
+</html>
