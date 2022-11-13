@@ -3,10 +3,11 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flaskext.mysql import MySQL
 
 def registro(nombre, apellido, ID, celular, correo, password):
-    cur = mysql.get_db().cursor()
+    '''cur = mysql.get_db().cursor()
     query = 'INSERT INTO tabla_lgjr (nombre, apellido, ID, celular, correo, password) VALUES (%s, %s, %s, %s, %s, %s)'
     cur.execute(query, (nombre, apellido, ID, celular, correo, password))
-    cur.close()
+    cur.close()'''
+    print("CAMBIÓ")
 
 def inicioSesion(usuario, password):
     cur = mysql.get_db().cursor()

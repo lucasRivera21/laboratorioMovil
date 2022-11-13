@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/generador.css">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Nunito+Sans:wght@300&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/48351f586e.js" crossorigin="anonymous"></script>
     <title>Generador de señales</title>
 </head>
 <body>
@@ -17,14 +20,57 @@
     </ul>
 </nav>
 
-<form action="/generador" class="form-generador" method="post">
-    <label for="frecuencia">Frecuencia (0Hz-70Hz):</label>
-    <input type="text" class="entrada-generador" name="frecuencia" required>
+<section class="body">
 
-    <label for="duty">Ciclo de trabajo (0%-100%):</label>
-    <input type="text" class="entrada-generador" name="duty" required>
+    <section class="boton-volver">
+        <a href="/usuario" class="link-volver">
+            <i class="fa-solid fa-arrow-left flecha"></i>
+            <p class="volver">Volver</p>
+        </a>
+    </section>
+    <section class="contenedor-generador">
+        <form action="/generador" class="form-generador" method="post">
 
-    <input type="submit" class="submit" value="Conectar">
-</form>
+            <h2 class="subtitle">Generador de Señales</h2>
+
+            <div class="input">
+                <label for="frecuencia">Frecuencia (0Hz-70Hz):</label>
+                <input type="text" class="entrada-generador" name="frecuencia" required>
+            </div>
+            <br>
+            <div class="input">
+                <label for="duty">Ciclo de trabajo (0%-100%):</label>
+                <input type="text" class="entrada-generador" name="duty" required>
+            </div>
+            <br>
+            <div class="input">
+                <p>Tipo de señal: PWM</p>
+                
+                <p>Voltaje: 3.3V</p>
+            </div>
+            <br>
+            <div class="input">
+                <input type="submit" class="submit" value="Conectar">
+            </div>
+
+            <!--OTROS ELEMENTOS-->
+            <div class="contenedor-elementos">
+                <h3 class="titulo-otros-elementos">Otros elementos:</h3>
+                
+                <div class="elemento">
+                    <a href="/multimetro" class="link-elemento"><p class="texto-link-elemento">Multímetro</p></a>
+                </div>
+    
+                <div class="elemento">
+                    <a href="/generador" class="link-elemento"><p class="texto-link-elemento">G. Señales</p></a>
+                </div>
+    
+                <div class="elemento">
+                    <a href="/fuente" class="link-elemento"><p class="texto-link-elemento">F.voltaje</p></a>
+                </div>
+            </div>
+        </form>
+    </section>
+</section>
 </body>
 </html>

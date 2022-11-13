@@ -17,3 +17,11 @@ def send_option(option: str, frec=None, duty=None, enable=True):
         }
         print(msg)
         client.publish("principal/generador",json.dumps(msg))
+    elif option == "fuente":
+        msg = {
+            "voltPuerto1": frec,
+            "voltPuerto2": duty,
+            "enable": enable
+        }
+        print(msg)
+        client.publish("principal/fuente",json.dumps(msg))

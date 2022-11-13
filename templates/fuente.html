@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/fuente.css">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Nunito+Sans:wght@300&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/48351f586e.js" crossorigin="anonymous"></script>
+    <title>Fuente de voltaje</title>
+</head>
+<body>
+    <nav class="nav">
+        <a href="/" class="logo"><img src="/static/img/Logo.png" alt="Logo LGJR" class="imagen-logo"></a>
+        
+        <ul class="acceso">
+            <li class="opcion"><a href="/" class="link" id="registro-responsive">Inicio</a></li>
+            <li class="opcion" id="boton-nav"><a href="/iniciar-sesion" class="link" id="link-boton">Cerrar sesión</a></li>
+        </ul>
+    </nav>
+    <!--BODY FUENTE-->
+    <section class="body">
+        <section class="boton-volver">
+            <a href="/usuario" class="link-volver">
+                <i class="fa-solid fa-arrow-left flecha"></i>
+                <p class="volver">Volver</p>
+            </a>
+        </section>
+
+        <section class="contenedor-generador">
+            <form action="/fuente" class="form-generador" method="post">
+    
+                <h2 class="subtitle">Fuente de Voltaje</h2>
+    
+                <div class="input">
+                    <label for="frecuencia">Puerto 1:</label>
+                    <input type="text" class="entrada-generador" name="voltPuerto1" required>
+                </div>
+                <br>
+                <div class="input">
+                    <label for="duty">Puerto 2:</label>
+                    <input type="text" class="entrada-generador" name="voltPuerto2" required>
+                </div>
+                <br>
+                <div class="input">
+                    <input type="submit" class="submit" value="Conectar">
+                </div>
+    
+                <!--OTROS ELEMENTOS-->
+                <div class="contenedor-elementos">
+                    <h3 class="titulo-otros-elementos">Otros elementos:</h3>
+                    
+                    <div class="elemento">
+                        <a href="/multimetro" class="link-elemento"><p class="texto-link-elemento">Multímetro</p></a>
+                    </div>
+        
+                    <div class="elemento">
+                        <a href="/generador" class="link-elemento"><p class="texto-link-elemento">G. Señales</p></a>
+                    </div>
+        
+                    <div class="elemento">
+                        <a href="/fuente" class="link-elemento"><p class="texto-link-elemento">F.voltaje</p></a>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <!--
+        <div class="contenedor-fuente">
+            <div class="contenedor-body-fuente">
+                <h1 class="title-fuente">Fuente de voltaje</h1>
+
+                <div class="fuentes">
+                    <form action="/fuente" class="puerto" method="post">
+                        <h3 class="title-puerto">Puerto 1</h3>
+
+                        <div class="entrada"><input type="text" name="voltPuerto1" placeholder="(0V - 30V)"><p class="valor">V</p></div>
+                        <input type="submit" value="Conectar" class="submit">
+                    </form>
+
+                    <form action="/fuente" class="puerto" method="post">
+                        <h3 class="title-puerto">Puerto 2</h3>
+
+                        <div class="entrada"><input type="text" name="voltPuerto2" placeholder="(0V - 30V)"><p class="valor">V</p></div>
+                        <input type="submit" value="Conectar" class="submit">
+                    </form>
+                </div>
+
+                <!--OTROS ELEMENTOS
+                <div class="contenedor-elementos">
+                    <h3 class="titulo-otros-elementos">Otros elementos:</h3>
+                
+                    <div class="elemento">
+                        <a href="/multimetro" class="link-elemento"><p class="texto-link-elemento">Multímetro</p></a>
+                    </div>
+    
+                    <div class="elemento">
+                        <a href="/generador" class="link-elemento"><p class="texto-link-elemento">G. Señales</p></a>
+                    </div>
+    
+                    <div class="elemento">
+                        <a href="/fuente" class="link-elemento"><p class="texto-link-elemento">F.voltaje</p></a>
+                    </div>
+                </div>
+
+            </div>
+        </div> -->
+    </section>
+</body>
+</html>

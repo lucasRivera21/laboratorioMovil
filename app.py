@@ -1,9 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from mqtt import send_option
-from registroSesionUsuario import registro, inicioSesion
 
 app = Flask(__name__)
+
+selector = ""
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -20,8 +22,13 @@ def registro_exitoso():
         ID = request.form['Identificación']
         celular = request.form['celular']
         correo = request.form['Correo']
+
         password = generate_password_hash(request.form['password'])
-        registro(nombre, apellido, ID, celular, correo, password)
+        cur = mysql.get_db().cursor()
+        query = 'INSERT INTO tabla_lgjr (nombre, apellido, ID, celular, correo, password) VALUES (%s, %s, %s, %s, %s, %s)'
+        cur.execute(query, (nombre, apellido, ID, celular, correo, password))
+        cur.close()
+
         return render_template('registro_exitoso.html')
 
 @app.route('/iniciar-sesion', methods=['GET', 'POST'])
@@ -29,12 +36,25 @@ def iniciar_sesion():
     if request.method == 'POST':
         usuario = request.form['Correo']
         password = request.form['pass']
-        inicioSesion(usuario, password)
+        
+        cur = mysql.get_db().cursor()
+        query = "SELECT correo, password FROM tabla_lgjr WHERE correo = '{}'".format(usuario)
+        cur.execute(query)
+        row = cur.fetchone()
+        cur.close()
+        if row != None:
+            if check_password_hash(row[1], password):
+                return redirect(url_for('usuario'))
+        else:
+            return render_template('Inicio2.html')
+
     else:
         return render_template('Inicio2.html')
 
 @app.route('/usuario')
 def usuario():
+    print(selector)
+    send_option(selector, 0, 0, False)
     return render_template('usuario.html')
 
 @app.route('/osciloscopio')
@@ -47,8 +67,25 @@ def generador():
     if request.method == 'POST':
         frec = request.form['frecuencia']
         duty = request.form['duty'] 
+        global selector
+        selector = "generador"
         send_option("generador", frec, duty)
+        
     return render_template('generador.html')
+
+@app.route('/fuente', methods=['GET', 'POST'])
+def fuente():
+    if request.method == 'POST':
+        volt1 = request.form['voltPuerto1']
+        volt2 = request.form['voltPuerto2']
+        global selector
+        selector = "fuente"
+        send_option("fuente", volt1, volt2)
+    else:
+        volt1 = 0
+        volt2 = 0
+        
+    return render_template('fuente.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

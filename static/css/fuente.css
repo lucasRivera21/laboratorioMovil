@@ -80,7 +80,7 @@ nav{
     }
 }
 
-/*BOTON VOLVER*/
+/*BONTÓN VOLVER*/
 .boton-volver{
     margin: 40px auto 40px auto;
     padding-left: 45px;
@@ -122,41 +122,35 @@ nav{
     }
 }
 
-/*GRÁFICAS*/
-.contenido{
+/*CONTENEDOR FUENTE*/
+
+.contenedor-generador{
+    height: 75vh;
     display: flex;
+    justify-content: center;
 }
-.contenedor-graficas{
-    width: 45%;
-    padding-left: 10vw;
-}
-
-.arriba-grafica{
-    display: flex;
-}
-
-
-
-.info-graficas{
-    padding-left: 40px;
-    padding-top: 30px;
-    width: 30vw;
+.form-generador{
+    width: 550px;
+    height: 367px;
+    margin-top: 30px;
+    padding-left: 50px;
     border-left: 3px solid #6F2FD3;
     box-shadow: 2px 2px 4px 4px rgba(0, 0, 0, 0.25);
 }
-.contenedor-grafica{
-    position: relative;
+.subtitle{
+    margin: 25px auto 25px auto;
 }
-.imagen-grafica{
-    width: 340px;
-    height: 280px;
+input{
+    border: 2px solid #6F2FD3;
+    width: 95px;
+    border-radius: 3px;
 }
-
-.puerto2{
-    margin: 25px auto 20px auto;
-}
-.texto-grafica{
-    margin-top: 10px;
+.submit{
+    cursor: pointer;
+    height: 28px;
+    background-color: #6F2FD3;
+    color: white;
+    
 }
 .contenedor-elementos{
     display: flex;
@@ -177,22 +171,18 @@ nav{
     display: flex;
     justify-content: center;
 }
-
-@media (max-width: 1480px){
+@media (max-width: 670px){
+    .form-generador{
+        width: 70vw;
+        height: 550px;
+    }
+    .input{
+        display: block;
+    }
     .contenedor-elementos{
         display: block;
     }
     .elemento{
         margin-bottom: 10px;
-    }
-}
-
-@media (max-width: 860px){
-    .contenido{
-        display: block;
-    }
-    .contenedor-graficas{
-        width: 100%;
-        left: 50%;
     }
 }
