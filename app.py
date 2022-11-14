@@ -1,9 +1,17 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from mqtt import send_option
+from flaskext.mysql import MySQL
 
 app = Flask(__name__)
-
+'''
+mysql = MySQL()
+app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+app.config['MYSQL_DATABASE_USER'] = 'root'
+app.config['MYSQL_DATABAS_PASSWORD'] = 'l44bvmg2001'
+app.config['MYSQL_DATABASE_DB'] = 'lab_movil'
+mysql.init_app(app)
+'''
 selector = ""
 selecMult = ""
 
