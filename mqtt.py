@@ -33,3 +33,10 @@ def send_option(option: str, frec=None, duty=None, enable=True):
         }
         print(msg)
         client.publish("principal/multimetro",json.dumps(msg))
+    elif option == "osciloscopio":
+
+        msg={
+            "enable": enable
+        }
+        print(msg)
+        client.publish("principal/osciloscopio",json.dumps(msg))

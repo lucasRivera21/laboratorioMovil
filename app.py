@@ -65,11 +65,13 @@ def usuario():
     print(selector)
     global selecMult
     selecMult = "NADA"
-    send_option(selector, 0, 0, False)
+    send_option(selector, 1, 0, False)
     return render_template('usuario.html')
 
 @app.route('/osciloscopio')
 def osciloscopio():
+    global selector
+    selector = "osciloscopio"
     send_option("osciloscopio")
     return render_template('osciloscopio.html')
 
@@ -125,6 +127,7 @@ def multimetro_continuidad():
     global selecMult
     selecMult = "continuidadMult"
     return redirect(url_for('multimetro'))
+
 
 if __name__ == '__main__':
     app.run(debug=True)
