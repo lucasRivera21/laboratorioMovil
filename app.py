@@ -5,6 +5,7 @@ from mqtt import send_option
 app = Flask(__name__)
 
 selector = ""
+selecMult = ""
 
 @app.route('/')
 def index():
@@ -54,6 +55,8 @@ def iniciar_sesion():
 @app.route('/usuario')
 def usuario():
     print(selector)
+    global selecMult
+    selecMult = "NADA"
     send_option(selector, 0, 0, False)
     return render_template('usuario.html')
 
@@ -86,6 +89,34 @@ def fuente():
         volt2 = 0
         
     return render_template('fuente.html')
+
+
+
+@app.route('/multimetro')
+def multimetro():
+    send_option("multimetro",selecMult,...,True)
+    print(selecMult)
+    global selector
+    selector = "multimetro"
+    return render_template('multimeterOption.html')
+
+@app.route('/multimetro-voltaje')
+def multimetro_voltaje():
+    global selecMult
+    selecMult = "voltMult"
+    return redirect(url_for('multimetro'))
+
+@app.route('/multimetro-corriente')
+def multimetro_corriente():
+    global selecMult
+    selecMult = "corrienteMult"
+    return redirect(url_for('multimetro'))
+
+@app.route('/multimetro-continuidad')
+def multimetro_continuidad():
+    global selecMult
+    selecMult = "continuidadMult"
+    return redirect(url_for('multimetro'))
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="./static/css/style.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <nav class="nav">
+        <a href="/" class="logo"><img src="/static/img/Logo.png" alt="Logo LGJR" class="imagen-logo"></a>
+        
+        <ul class="acceso">
+            <li class="opcion"><a href="/" class="link" id="registro-responsive">Inicio</a></li>
+            <li class="opcion" id="boton-nav"><a href="/iniciar-sesion" class="link" id="link-boton">Cerrar sesión</a></li>
+        </ul>
+    </nav>
+
+    <div class="multimeterOption">
+        <a href="/usuario"><button class="flex back">
+            <img src="./static/img/arrow.svg" alt="arrow">
+            <p>Volver</p>
+        </button></a>
+        <h1><i class="fa-solid fa-calculator"></i>Multímetro</h1>
+        <div class="flex flex-j-s-b flex-f-w">
+            <section class="containerMultimeter">
+                <div class="flex flex-j-s-b">
+                    <h2><i class="fa-solid fa-bolt"></i>Voltaje</h2>
+                    <div class="flex check-box">
+                        <buton class="boton-enviar"><a href="/multimetro-voltaje" class="link-enviar">Usar</a></buton>
+                    </div>
+                </div>
+                <h2 class="output">N/A</h2>
+            </section>
+            <section class="containerMultimeter">
+                <div class="flex flex-j-s-b">
+                    <h2><i class="fa-solid fa-bolt"></i>Corriente</h2>
+                    <div class="flex check-box">
+                        <buton class="boton-enviar"><a href="/multimetro-corriente" class="link-enviar">Usar</a></buton>
+                    </div>
+                </div>
+                <h2 class="output">N/A</h2>
+            </section>
+            <section class="containerMultimeter">
+                <div class="flex flex-j-s-b">
+                    <h2><i class="fa-solid fa-bolt"></i> Continuidad</h2>
+                    <div class="flex check-box">
+                        <buton class="boton-enviar"><a href="/multimetro-continuidad" class="link-enviar">Usar</a></buton>
+                    </div>
+                </div>
+                <h2 class="output">N/A</h2>
+            </section>
+        </div>
+    </div>
+</body>
+</html>
