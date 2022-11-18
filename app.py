@@ -1,7 +1,12 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from werkzeug.security import generate_password_hash, check_password_hash
-from mqtt import send_option
+from mqtt import send_option 
+from mqtt import on_connect
+from mqtt import on_message
+from mqtt import listen
 from flaskext.mysql import MySQL
+import paho.mqtt.client as mqtt
+import time
 
 app = Flask(__name__)
 '''
@@ -14,6 +19,18 @@ mysql.init_app(app)
 '''
 selector = ""
 selecMult = ""
+'''
+def on_message(client, userdata, message):
+    print("message received " ,str(message.payload.decode("utf-8")))
+    print("message topic=",message.topic)
+    print("message qos=",message.qos)
+    print("message retain flag=",message.retain)
+'''
+client =mqtt.Client("entrada")
+
+client.on_message=on_message
+client.connect("18.228.232.219")
+client.subscribe("salida/#")
 
 @app.route('/')
 def index():
@@ -65,38 +82,43 @@ def usuario():
     print(selector)
     global selecMult
     selecMult = "NADA"
-    send_option(selector, 1, 0, False)
+    usuario = {
+        "frecuencia": 1,
+        "duty": 0,
+        "voltPuerto1": 0,
+        "voltPuerto2": 0,
+        "enable": False,
+        "tipoMult": None
+    }
+    send_option(selector, **usuario)
     return render_template('usuario.html')
 
 @app.route('/osciloscopio')
 def osciloscopio():
+    osciloscopio = {
+        "enable" : True
+    }
     global selector
     selector = "osciloscopio"
-    send_option("osciloscopio")
+    send_option("osciloscopio", **osciloscopio)
     return render_template('osciloscopio.html')
 
 @app.route('/generador', methods=['GET','POST'])
 def generador():
     if request.method == 'POST':
-        frec = request.form['frecuencia']
-        duty = request.form['duty'] 
         global selector
         selector = "generador"
-        send_option("generador", frec, duty)
+        
+        send_option("generador",frecuencia = request.form['frecuencia'], duty = request.form['duty'], enable = True)
         
     return render_template('generador.html')
 
 @app.route('/fuente', methods=['GET', 'POST'])
 def fuente():
     if request.method == 'POST':
-        volt1 = request.form['voltPuerto1']
-        volt2 = request.form['voltPuerto2']
         global selector
         selector = "fuente"
-        send_option("fuente", volt1, volt2)
-    else:
-        volt1 = 0
-        volt2 = 0
+        send_option("fuente", voltPuerto1= request.form['voltPuerto1'], voltPuerto2= request.form['voltPuerto2'], enable = True)
         
     return render_template('fuente.html')
 
@@ -104,7 +126,11 @@ def fuente():
 
 @app.route('/multimetro')
 def multimetro():
-    send_option("multimetro",selecMult,...,True)
+    multimetro = {
+        "tipoMult": selecMult,
+        "enable": True
+    }
+    send_option("multimetro",**multimetro)
     print(selecMult)
     global selector
     selector = "multimetro"

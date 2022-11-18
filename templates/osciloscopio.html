@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/css/osciloscopio.css">
     <script src="https://kit.fontawesome.com/48351f586e.js" crossorigin="anonymous"></script>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <title>osciloscopio</title>
 </head>
 <body>
@@ -33,25 +37,105 @@
     <section class="contenido">
     
         <!--GRÁFICA 1-->
-        <div class="contenedor-graficas">
-        <div class="contenedor-grafica">
-            <div class="arriba-grafica">
-                <h2 class="titulo-grafica">Puerto 1</h2>
-                
+        
+        <div class="container pt-4"> 
+            <div class="row">
+                 <div class="col-md-12 pt-4 pb-4">
+                    <h3 class="text-center"><strong>Gráficas en tiempo real</strong></h3>
+                </div>
+                <div class="col-md-6 pt-4 pb-4">
+                    <h4 class="text-center">Fecha vs Numero 1</h4>
+                    <div class="card"> 
+                        <div class="card-body"> 
+                            <canvas id="numero1" width="500" height="400"></canvas>
+                        </div> 
+                    </div> 
+                </div>
+                <div class="col-md-6 pt-4 pb-4">
+                    <h4 class="text-center">Fecha vs Numero 2</h4>
+                    <div class="card"> 
+                        <div class="card-body"> 
+                            <canvas id="numero2" width="500" height="400"></canvas>
+                        </div> 
+                    </div> 
+                </div>
             </div>
-            <div class="grafica"><img src="https://prints.ultracoloringpages.com/fcd8077916a3d7a117451e1e90357b4f.png" alt="" class="imagen-grafica"></div>
         </div>
-    
-        <!--GRÁFICA 2-->
-        <div class="contenedor-grafica">
-            <div class="arriba-grafica">
-                <h2 class="titulo-grafica">Puerto 2</h2>
-                
-            </div>
-            <div class="grafica"><img src="https://prints.ultracoloringpages.com/fcd8077916a3d7a117451e1e90357b4f.png" alt="" class="imagen-grafica"></div>
-        </div>
-        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
+        <script>
+            Chart.defaults.global.responsive = true;
+            Chart.defaults.global.legend.display = false;
+        
+            $(document).ready(function () {
+                const config = {
+                    type: 'line',
+                    data: {
+                        labels: [],
+                        datasets: [{
+                            label: "Numero 1",
+                            backgroundColor: "rgb(132,186,91,0.2)",
+                            borderColor: "rgb(62,150,81,1)",
+                            data: [],
+                            fill: false,
+                        }],
+                    },
+                    options: {
+                        responsive: true,
+                        title: {
+                            display: true,
+                        },
+                        tooltips: {
+                            mode: 'index',
+                            intersect: false,
+                        },
+                        hover: {
+                            mode: 'nearest',
+                            intersect: true
+                        },
+                        scales: {
+                            xAxes: [{
+                                display: true,
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Fecha de adquisición'
+                                }
+                            }],
+                            yAxes: [{
+                                display: true,
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Unidad'
+                                }
+                            }]
+                        }
+                    }
+                };
+        
+                const context = document.getElementById('numero1').getContext('2d');
+        
+                const lineChart = new Chart(context, config);
+        
+                const source = new EventSource("/datos_monitoreo");
+        
+                source.onmessage = function (event) {
+                    const data = JSON.parse(event.data);
+        
+                    if (config.data.labels.length == 5) {
+                        config.data.labels.shift();
+                        config.data.datasets[0].data.shift();
+                    }
+        
+                    config.data.labels.push(data.fecha);
+                    config.data.datasets[0].data.push(data.numero1);
+                    lineChart.update();
+                }
+            });
+        </script>
+
+
+        
+    
         <!--INFORMACIÓN GRÁFICAS-->
         <div class="info-graficas">
             <h1 class="titulo">Osciloscopio</h1>
@@ -93,6 +177,8 @@
         </div>
     </section>
 </div>
+
+
 </body>
 </html>
 
