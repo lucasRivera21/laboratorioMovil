@@ -36,7 +36,7 @@ def on_message(client, userdata, msg):
         data = json.loads(msg.payload)
         output = data["voltajePagina"]
         print(output)
-        query = f'INSERT INTO voltOsc (voltaje) VALUES {output}'
+        query = 'INSERT INTO voltOsc (voltaje) VALUES' + str(output) 
         cur.execute(query)
         cur.commit()
         cur.close()
