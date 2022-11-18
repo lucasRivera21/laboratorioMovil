@@ -27,8 +27,8 @@ def on_message(client, userdata, msg):
         data = json.loads(msg.payload)
         output = data["voltajePagina"]
         print(output)
-        query = 'INSERT INTO voltMult (voltaje) VALUES (%s)'
-        cur.execute(query, (output))
+        query = f'INSERT INTO voltMult (voltaje) VALUES {output}'
+        cur.execute(query)
         cur.commit()
         cur.close()
 
@@ -36,16 +36,16 @@ def on_message(client, userdata, msg):
         data = json.loads(msg.payload)
         output = data["voltajePagina"]
         print(output)
-        query = 'INSERT INTO voltOsc (voltaje) VALUES (%s)'
-        cur.execute(query, (output))
+        query = f'INSERT INTO voltOsc (voltaje) VALUES {output}'
+        cur.execute(query)
         cur.commit()
         cur.close()
     elif msg.topic == "salida/corriente":
         data = json.loads(msg.payload)
         output = data["corrientePagina"]
         print(output)
-        query = 'INSERT INTO corrienteMult (corriente) VALUES (%s)'
-        cur.execute(query, (output))
+        query = f'INSERT INTO corrienteMult (corriente) VALUES {output}'
+        cur.execute(query)
         cur.commit()
         cur.close()
 
@@ -53,7 +53,7 @@ def listen():
     client = mqtt.Client()
     client.on_connect = on_connect
     client.on_message = on_message
-    client.connect("18.228.232.219",1883)
+    client.connect("52.67.58.169",1883)
     client.subscribe(topics)
     client.loop_forever()
 

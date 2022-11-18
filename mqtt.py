@@ -9,7 +9,7 @@ def on_connect(client, userdata, flags, rc):
 def send_option(option: str, **kwargs):
     client = mqtt.Client()
     client.on_connect = on_connect
-    client.connect("18.228.232.219",1883)
+    client.connect("52.67.58.169",1883)
     if option == "generador":
         msg = {
             "frecuencia": kwargs["frecuencia"],
