@@ -1,5 +1,16 @@
 import paho.mqtt.client as mqtt
 import json
+import pymysql
+
+conn = pymysql.connect(
+    host="localhost", 
+    port=3306,
+    user="root",
+    password="l44bvmg2001",
+    db="salidas"
+)
+
+cur = conn.cursor()
 
 topics = [("salida/voltaje",0),("salida/osciloscopio",0)]
 output = None
@@ -16,26 +27,26 @@ def on_message(client, userdata, msg):
         data = json.loads(msg.payload)
         output = data["voltajePagina"]
         print(output)
-        cur = mysql.get_db().cursor()
         query = 'INSERT INTO voltMult (voltaje) VALUES (%s)'
         cur.execute(query, (output))
+        cur.commit()
         cur.close()
 
     elif msg.topic == "salida/osciloscopio":
         data = json.loads(msg.payload)
         output = data["voltajePagina"]
         print(output)
-        cur = mysql.get_db().cursor()
         query = 'INSERT INTO voltOsc (voltaje) VALUES (%s)'
         cur.execute(query, (output))
+        cur.commit()
         cur.close()
     elif msg.topic == "salida/corriente":
         data = json.loads(msg.payload)
         output = data["corrientePagina"]
         print(output)
-        cur = mysql.get_db().cursor()
         query = 'INSERT INTO corrienteMult (corriente) VALUES (%s)'
         cur.execute(query, (output))
+        cur.commit()
         cur.close()
 
 def listen():
