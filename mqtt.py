@@ -1,6 +1,10 @@
 import paho.mqtt.client as mqtt
 import json
-
+def on_connect(client, userdata, flags, rc):
+        if rc == 0:
+            print("Connected to MQTT Broker!")
+        else:
+            print("Failed to connect, return code %d\n", rc)
 
 def send_option(option: str, **kwargs):
     client = mqtt.Client()

@@ -1,9 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from mqtt import send_option 
-from mqtt import on_connect
-from mqtt import on_message
-from mqtt import listen
 from flaskext.mysql import MySQL
 import paho.mqtt.client as mqtt
 import time
@@ -26,11 +23,7 @@ def on_message(client, userdata, message):
     print("message qos=",message.qos)
     print("message retain flag=",message.retain)
 '''
-client =mqtt.Client("entrada")
 
-client.on_message=on_message
-client.connect("18.228.232.219")
-client.subscribe("salida/#")
 
 @app.route('/')
 def index():

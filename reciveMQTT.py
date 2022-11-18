@@ -16,9 +16,27 @@ def on_message(client, userdata, msg):
         data = json.loads(msg.payload)
         output = data["voltajePagina"]
         print(output)
+        cur = mysql.get_db().cursor()
+        query = 'INSERT INTO voltMult (voltaje) VALUES (%s)'
+        cur.execute(query, (output))
+        cur.close()
+
     elif msg.topic == "salida/osciloscopio":
         data = json.loads(msg.payload)
         output = data["voltajePagina"]
+        print(output)
+        cur = mysql.get_db().cursor()
+        query = 'INSERT INTO voltOsc (voltaje) VALUES (%s)'
+        cur.execute(query, (output))
+        cur.close()
+    elif msg.topic == "salida/corriente":
+        data = json.loads(msg.payload)
+        output = data["corrientePagina"]
+        print(output)
+        cur = mysql.get_db().cursor()
+        query = 'INSERT INTO corrienteMult (corriente) VALUES (%s)'
+        cur.execute(query, (output))
+        cur.close()
 
 def listen():
     client = mqtt.Client()
@@ -28,3 +46,5 @@ def listen():
     client.subscribe(topics)
     client.loop_forever()
 
+if __name__ == "__main__":
+    listen()

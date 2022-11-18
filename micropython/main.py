@@ -4,8 +4,8 @@ import network
 from umqttsimple import MQTTClient
 import ujson
 
-SSID = "Julio"
-PASSWORD = "12560074CRG"
+SSID = "Wi-Fi Unimagdalena"
+PASSWORD = ""
 client = MQTTClient("prueba", "18.228.232.219")
 #ENTRADAS
 #CONTINUIDAD(PIN 5), VOLTÍMETRO(PIN 34, 35 ADC)
@@ -69,7 +69,7 @@ def multimetro(tipoMult, enable):
     led = Pin(22,Pin.OUT, value = 0)
     adc = ADC(Pin(34, mode=Pin.IN))
     adc2 = ADC(Pin(35, mode=Pin.IN))
-    if enable == "True":
+    if enable == True:
         print("ESTAS EN MULTIMETRO")
         if tipoMult == "continuidadMult":
 
@@ -107,7 +107,7 @@ def multimetro(tipoMult, enable):
             print(msg)
             client.publish("salida/voltaje", ujson.dumps(msg))
             sleep(1)
-    elif enable == "False":
+    elif enable == False:
         led.off()
         
 #FUENTE DE VOLTAJE
