@@ -9,8 +9,8 @@ app = Flask(__name__)
 
 mysql = MySQL()
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
-app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABAS_PASSWORD'] = 'l44bvmg2001'
+app.config['MYSQL_DATABASE_USER'] = 'lucas'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'l44bvmg2001'
 app.config['MYSQL_DATABASE_DB'] = 'salidas'
 mysql.init_app(app)
 
@@ -123,6 +123,12 @@ def multimetro():
         "tipoMult": selecMult,
         "enable": True
     }
+    if selecMult == "voltMult":
+        cur = mysql.get_db().cursor()
+        query = 'SELECT voltaje FROM voltMult ORDER BY id DESC LIMIT 1'
+        cur.execute(query)
+        voltajeSQL = cur.fetchone()
+        print(voltajeSQL[0])
     send_option("multimetro",**multimetro)
     print(selecMult)
     global selector
@@ -133,11 +139,7 @@ def multimetro():
 def multimetro_voltaje():
     global selecMult
     selecMult = "voltMult"
-    cur = mysql.get_db().cursor()
-    query = 'SELECT voltaje FROM voltMult BY id DESC LIMIT 1'
-    cur.execute(query)
-    voltajeSQL = cur.fetchone()
-    print(voltajeSQL)
+    
     return redirect(url_for('multimetro'))
 
 @app.route('/multimetro-corriente')
