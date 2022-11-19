@@ -11,7 +11,7 @@ mysql = MySQL()
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 app.config['MYSQL_DATABASE_USER'] = 'root'
 app.config['MYSQL_DATABAS_PASSWORD'] = 'l44bvmg2001'
-app.config['MYSQL_DATABASE_DB'] = 'lab_movil'
+app.config['MYSQL_DATABASE_DB'] = 'salidas'
 mysql.init_app(app)
 
 selector = None
