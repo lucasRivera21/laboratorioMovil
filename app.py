@@ -6,16 +6,16 @@ import paho.mqtt.client as mqtt
 import time
 
 app = Flask(__name__)
-'''
+
 mysql = MySQL()
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 app.config['MYSQL_DATABASE_USER'] = 'root'
 app.config['MYSQL_DATABAS_PASSWORD'] = 'l44bvmg2001'
 app.config['MYSQL_DATABASE_DB'] = 'lab_movil'
 mysql.init_app(app)
-'''
-selector = ""
-selecMult = ""
+
+selector = None
+selecMult = None
 '''
 def on_message(client, userdata, message):
     print("message received " ,str(message.payload.decode("utf-8")))
@@ -133,6 +133,11 @@ def multimetro():
 def multimetro_voltaje():
     global selecMult
     selecMult = "voltMult"
+    cur = mysql.get_db().cursor()
+    query = 'SELECT voltaje FROM voltMult BY id DESC LIMIT 1'
+    cur.execute(query)
+    voltajeSQL = cur.fetchone()
+    print(voltajeSQL)
     return redirect(url_for('multimetro'))
 
 @app.route('/multimetro-corriente')

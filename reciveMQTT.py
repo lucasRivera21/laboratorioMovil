@@ -27,6 +27,7 @@ def on_message(client, userdata, msg):
         print(data["voltajePagina"])
         query = 'INSERT INTO voltMult (voltaje) VALUES (%s)'
         cur.execute(query,(data["voltajePagina"]))
+        
         conn.commit()
     elif msg.topic == "salida/osciloscopio":
         data = json.loads(msg.payload)
