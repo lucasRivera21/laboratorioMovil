@@ -4,9 +4,9 @@ import network
 from umqttsimple import MQTTClient
 import ujson
 
-SSID = "Wi-Fi Unimagdalena"
-PASSWORD = ""
-client = MQTTClient("prueba", "18.228.232.219")
+SSID = "Julio"
+PASSWORD = "12560074CRG"
+client = MQTTClient("prueba", "18.228.203.51")
 #ENTRADAS
 #CONTINUIDAD(PIN 5), VOLTÍMETRO(PIN 34, 35 ADC)
 

@@ -1,9 +1,10 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, Response, stream_with_context
 from werkzeug.security import generate_password_hash, check_password_hash
 from mqtt import send_option 
 from flaskext.mysql import MySQL
 import paho.mqtt.client as mqtt
 import time
+import json
 
 app = Flask(__name__)
 
@@ -16,13 +17,6 @@ mysql.init_app(app)
 
 selector = None
 selecMult = None
-'''
-def on_message(client, userdata, message):
-    print("message received " ,str(message.payload.decode("utf-8")))
-    print("message topic=",message.topic)
-    print("message qos=",message.qos)
-    print("message retain flag=",message.retain)
-'''
 
 
 @app.route('/')
@@ -115,6 +109,13 @@ def fuente():
         
     return render_template('fuente.html')
 
+def _datos(cur):
+    query = 'SELECT voltaje FROM voltMult ORDER BY id DESC LIMIT 1'
+    cur.execute(query)
+    voltajeSQL = cur.fetchone()
+    json_data = json.dumps({'voltaje': voltajeSQL[0]})
+    
+    yield f"data:{json_data}"
 
 
 @app.route('/multimetro')
@@ -125,22 +126,28 @@ def multimetro():
     }
     if selecMult == "voltMult":
         cur = mysql.get_db().cursor()
-        query = 'SELECT voltaje FROM voltMult ORDER BY id DESC LIMIT 1'
-        cur.execute(query)
-        voltajeSQL = cur.fetchone()
-        print(voltajeSQL[0])
+        cur.execute('SELECT fecha_adquisicion, numero1, numero2 FROM datos_tiempo_real')
+        valores = cur.fetchall()
+
+
     send_option("multimetro",**multimetro)
     print(selecMult)
     global selector
     selector = "multimetro"
-    return render_template('multimeterOption.html')
+    return render_template('multimeterOption.html', valores=valores)
 
 @app.route('/multimetro-voltaje')
 def multimetro_voltaje():
     global selecMult
     selecMult = "voltMult"
-    
     return redirect(url_for('multimetro'))
+
+@app.route('/datos_monitoreo')
+def datos_monitoreo():
+    cur = mysql.get_db().cursor()
+    enviar = _datos(cur)
+    return Response(stream_with_context(enviar), mimetype='text/event-stream')
+
 
 @app.route('/multimetro-corriente')
 def multimetro_corriente():

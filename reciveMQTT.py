@@ -49,7 +49,7 @@ def listen():
     client = mqtt.Client()
     client.on_connect = on_connect
     client.on_message = on_message
-    client.connect("52.67.58.169",1883)
+    client.connect("18.228.203.51",1883)
     client.subscribe(topics)
     client.loop_forever()
 
